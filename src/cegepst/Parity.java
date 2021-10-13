@@ -9,7 +9,7 @@ public class Parity {
         printEncodedMessage();
     }
 
-    public void addParity() {
+    private void addParity() {
         String[] binaryArray = new String[parityMessage.getMessageLength()];
         for (int i = 0; i < parityMessage.getMessageLength(); i++) {
             binaryArray[i] = addParityBit(i);
@@ -27,33 +27,7 @@ public class Parity {
         return binary;
     }
 
-    private int calculateNbOf1(String binary) {
-        int nb1 = 0;
-        for (int j = 0; j < 8; j++) {
-            if (binary.charAt(j) == '1')
-                nb1++;
-        }
-        return nb1;
-    }
-
-    private void printEncodedMessage() {
-        for (int i = 0; i < parityMessage.getMessageLength(); i++) {
-            if (i % 8 == 0 && i > 0) {
-                printParityLine(i);
-            }
-            printEncodedCharacter(parityMessage.getBinaryMessage(i), parityMessage.getAlphabeticMessage().charAt(i));
-        }
-    }
-
-    private void printEncodedCharacter(String binary, char character) {
-        System.out.print(character + " = ");
-        for (int i = 0; i < 8; i++) {
-            System.out.print(binary.charAt(i));
-        }
-        System.out.println(Terminal.RED + binary.charAt(8) + Terminal.RESET);
-    }
-
-    private void printParityLine(int i) {
+    private void addParityLine(int i) {
         StringBuilder parityLine = new StringBuilder();
         for (int k = 0; k < 9; k++) {
             int nb1 = 0;
@@ -68,6 +42,36 @@ public class Parity {
                 parityLine.append('0');
         }
         parityMessage.setParityLine(parityLine.toString());
-        System.out.println("    " + Terminal.RED + parityLine + Terminal.RESET);
+        printParityLine();
+    }
+
+    private int calculateNbOf1(String binary) {
+        int nb1 = 0;
+        for (int j = 0; j < 8; j++) {
+            if (binary.charAt(j) == '1')
+                nb1++;
+        }
+        return nb1;
+    }
+
+    private void printEncodedMessage() {
+        for (int i = 0; i < parityMessage.getMessageLength(); i++) {
+            if (i % 8 == 0 && i > 0) {
+                addParityLine(i);
+            }
+            printEncodedCharacter(parityMessage.getBinaryMessage(i), parityMessage.getAlphabeticMessage().charAt(i));
+        }
+    }
+
+    private void printEncodedCharacter(String binary, char character) {
+        System.out.print(character + " = ");
+        for (int i = 0; i < 8; i++) {
+            System.out.print(binary.charAt(i));
+        }
+        System.out.println(Terminal.RED + binary.charAt(8) + Terminal.RESET);
+    }
+
+    private void printParityLine() {
+        System.out.println("    " + Terminal.RED + parityMessage.getParityLine() + Terminal.RESET);
     }
 }
