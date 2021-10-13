@@ -1,6 +1,9 @@
 package cegepst;
 
+import java.util.List;
+
 public class Message {
+    private List<String> encodedBinaryArray;
     private String[] binaryMessage;
     private String alphabeticMessage;
     private String parityLine;
@@ -45,5 +48,13 @@ public class Message {
 
     public void setParityLine(String parityLine) {
         this.parityLine = parityLine;
+    }
+
+    public String getEncodedBinaryArray(int i) {
+        return encodedBinaryArray.get(i);
+    }
+
+    public void setEncodedBinaryArray(List<String> encodedBinaryArray) {
+        this.encodedBinaryArray = encodedBinaryArray;
     }
 }
