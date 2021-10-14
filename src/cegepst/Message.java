@@ -50,11 +50,19 @@ public class Message {
         this.parityLine = parityLine;
     }
 
-    public String getEncodedBinaryArray(int i) {
-        return encodedBinaryArray.get(i);
+    public List<String> getEncodedBinaryArray() {
+        return encodedBinaryArray;
     }
 
     public void setEncodedBinaryArray(List<String> encodedBinaryArray) {
         this.encodedBinaryArray = encodedBinaryArray;
+    }
+
+    public String getEncodedBinaryValue(int i) {
+        return encodedBinaryArray.get(i);
+    }
+
+    public void setEncodedBinaryValue(String encodedBinaryValue, int i) {
+        this.encodedBinaryArray.set(i, encodedBinaryValue);
     }
 }

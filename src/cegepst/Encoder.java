@@ -9,7 +9,7 @@ public class Encoder {
         encoderMessage.setMessageLength(userInput.length());
         convertToAscii();
         convertToBinary();
-        new Parity(encoderMessage);
+        new Parity(encoderMessage).addParity();
     }
 
     private void convertToAscii() {
@@ -27,10 +27,11 @@ public class Encoder {
             int asciiValue = encoderMessage.getAsciiMessage(i);
             StringBuilder binary = new StringBuilder();
             while (asciiValue > 0) {
-                if (asciiValue % 2 == 1)
+                if (asciiValue % 2 == 1) {
                     binary.append('1');
-                else
+                } else {
                     binary.append('0');
+                }
                 asciiValue /= 2;
             }
             binaryArray[i] = validateBinary(binary.reverse());

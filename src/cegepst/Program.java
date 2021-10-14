@@ -6,18 +6,20 @@ public class Program {
     Scanner scanner = new Scanner(System.in);
 
     public void start() {
-        String mode = askMode();
-        if (mode.equals("1")) {
-            startEncoder();
-        } else {
-            startDecoder();
+        while (true) {
+            String mode = askMode();
+            if (mode.equals("1")) {
+                startEncoder();
+            } else {
+                startDecoder();
+            }
         }
     }
 
     private String askMode() {
         String mode;
         do {
-            System.out.println("1- Encode a message");
+            System.out.println("\n1- Encode a message");
             System.out.println("2- Decode a message");
             System.out.println("Choose the mode you want to use : ");
             mode = scanner.nextLine();
