@@ -36,6 +36,7 @@ class EncoderTest {
     @Test
     void testParityLine() {
         new Encoder("Hello World", message);
-        assertEquals("010110100", message.getParityLine());
+        assertEquals("010110100", message.getParityLineValue(0));
+        assertEquals("011110101", message.getParityLineValue(1));
     }
 }

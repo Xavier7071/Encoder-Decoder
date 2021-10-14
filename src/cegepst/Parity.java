@@ -1,10 +1,15 @@
 package cegepst;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Parity {
     private final Message parityMessage;
+    private final List<String> parityLineArray;
 
     public Parity(Message message) {
         parityMessage = message;
+        parityLineArray = new ArrayList<>();
     }
 
     public void addParity() {
@@ -26,10 +31,10 @@ public class Parity {
         return (nb1 % 2) == 0;
     }
 
-    public int validateColumn(int i, int temp) {
+    public int validateColumn(int i, int length) {
         for (int j = 0; j < 9; j++) {
             int nb1 = 0;
-            for (int k = i; k < temp; k++) {
+            for (int k = i; k < length; k++) {
                 if (parityMessage.getEncodedBinaryValue(k).charAt(j) == '1') {
                     nb1++;
                 }
@@ -52,11 +57,11 @@ public class Parity {
         return binary;
     }
 
-    private void addParityLine(int i, int temp) {
+    private void addParityLine(int i, int length) {
         StringBuilder parityLine = new StringBuilder();
         for (int k = 0; k < 9; k++) {
             int nb1 = 0;
-            for (int j = i; j < temp; j++) {
+            for (int j = i; j < length; j++) {
                 if (parityMessage.getBinaryMessage(j).charAt(k) == '1') {
                     nb1++;
                 }
@@ -67,7 +72,8 @@ public class Parity {
                 parityLine.append('0');
             }
         }
-        parityMessage.setParityLine(parityLine.toString());
+        parityLineArray.add(parityLine.toString());
+        parityMessage.setParityLineArray(parityLineArray);
         printParityLine();
     }
 
@@ -107,6 +113,6 @@ public class Parity {
     }
 
     private void printParityLine() {
-        System.out.println("    " + Terminal.RED + parityMessage.getParityLine() + Terminal.RESET);
+        System.out.println("    " + Terminal.RED + parityLineArray.get(parityLineArray.size()-1) + Terminal.RESET);
     }
 }

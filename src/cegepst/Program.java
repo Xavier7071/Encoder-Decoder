@@ -34,7 +34,7 @@ public class Program {
     }
 
     private void startDecoder() {
-        System.out.println("Enter the binary of the message to decode (9 bits) : ");
+        System.out.println("Enter the binary of the message to decode (9 bits per line) : ");
         System.out.println("Press Enter twice when you are done");
         Message message = new Message();
         new Decoder(readMessageToDecode(), message);

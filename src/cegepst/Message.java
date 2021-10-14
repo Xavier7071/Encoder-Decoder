@@ -6,9 +6,11 @@ public class Message {
     private List<String> encodedBinaryArray;
     private String[] binaryMessage;
     private String alphabeticMessage;
-    private String parityLine;
+    private List<String> parityLineArray;
     private int[] asciiMessage;
     private int messageLength;
+    private boolean errorDetected;
+    private boolean corruptionDetected;
 
     public String getAlphabeticMessage() {
         return alphabeticMessage;
@@ -42,16 +44,12 @@ public class Message {
         this.messageLength = messageLength;
     }
 
-    public String getParityLine() {
-        return parityLine;
+    public String getParityLineValue(int i) {
+        return parityLineArray.get(i);
     }
 
-    public void setParityLine(String parityLine) {
-        this.parityLine = parityLine;
-    }
-
-    public List<String> getEncodedBinaryArray() {
-        return encodedBinaryArray;
+    public void setParityLineArray(List<String> parityLineArray) {
+        this.parityLineArray = parityLineArray;
     }
 
     public void setEncodedBinaryArray(List<String> encodedBinaryArray) {
@@ -64,5 +62,21 @@ public class Message {
 
     public void setEncodedBinaryValue(String encodedBinaryValue, int i) {
         this.encodedBinaryArray.set(i, encodedBinaryValue);
+    }
+
+    public boolean isErrorDetected() {
+        return errorDetected;
+    }
+
+    public void setErrorDetected(boolean errorDetected) {
+        this.errorDetected = errorDetected;
+    }
+
+    public boolean isCorruptionDetected() {
+        return corruptionDetected;
+    }
+
+    public void setCorruptionDetected(boolean corruptionDetected) {
+        this.corruptionDetected = corruptionDetected;
     }
 }
